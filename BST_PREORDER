@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct node {
+    
+    int data;
+    struct node *left;
+    struct node *right;
+  
+};
+
+void preOrder( struct node *root) {
+  
+	if( root == NULL ) 
+      return;
+	printf("%d ",root->data);
+	preOrder(root->left);
+	preOrder(root->right);
+  
+}
+
+
+struct node* insert( struct node* root, int data ) {
+	       struct node* root1=malloc(sizeof( struct node));
+			//printf("%d    \n",data );
+			//printf("%d    \n",root->data );
+			
+		if (root == NULL) {
+			//printf("inside if     \n");
+			
+                root1->data = data;
+				//printf("after dta     \n");
+                root1->right=NULL;
+                root1->left=NULL;
+				//printf("at last if     \n");
+              return root1;  
+                }
+        else if(root->data < data)
+                    root->right=insert(root->right,data);
+        else 
+                root->left=insert(root->left, data);
+
+            return root;
+        }
+
+
+
+int main() {
+  
+    struct node* root = NULL;
+    
+    int t;
+    int data;
+
+    scanf("%d", &t);
+
+    while(t-- > 0) {
+        scanf("%d", &data);
+        root = insert(root, data);
+    }
+  
+	preOrder(root);
+    return 0;
+}
