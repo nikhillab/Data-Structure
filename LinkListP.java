@@ -1,5 +1,5 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+package com.dsa;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -37,51 +37,22 @@ public class LinkListP {
         }
     }
 
-    public static void printSinglyLinkedList(SinglyLinkedListNode node, String sep, BufferedWriter bufferedWriter) throws IOException {
+    public static void printSinglyLinkedList(SinglyLinkedListNode node) {
         while (node != null) {
-            bufferedWriter.write(String.valueOf(node.data));
-
+            System.out.print(node.data + " ");
             node = node.next;
 
-            if (node != null) {
-                bufferedWriter.write(sep);
-            }
+
         }
     }
 
-    // Complete the insertNodeAtPosition function below.
-
-    /*
-     * For your reference:
-     *
-     * SinglyLinkedListNode {
-     *     int data;
-     *     SinglyLinkedListNode next;
-     * }
-     *
-     */
-    static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode head, int data, int position) {
-        SinglyLinkedListNode node = new SinglyLinkedListNode(data);
-        SinglyLinkedListNode ptr = head;
-        int count = 0;
-        System.out.println(" new node created:" + node.data);
-        while (ptr != null && count != position - 1) {
-            ptr = ptr.next;
-            count++;
-
-        }
-        node.next = ptr.next;
-        ptr.next = node;
-        System.out.println(" new ptr created:" + ptr.data);
 
 
-        return head;
-    }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        // BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         SinglyLinkedList llist = new SinglyLinkedList();
 
@@ -95,18 +66,19 @@ public class LinkListP {
             llist.insertNode(llistItem);
         }
 
-        int data = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+//        int data = scanner.nextInt();
+//        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+//s
+//        int position = scanner.nextInt();
+//        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        LinkListQuestion lq= new LinkListQuestion();
+      //  lq.nNodeFromEnd(llist.head,5);
+       llist.head= lq.insertInSortedList(llist.head,19);
+////        SinglyLinkedListNode llist_head = insertNodeAtPosition(llist.head, data, position);
+//        llist.head= lq.reverse(llist.head);
 
-        int position = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        printSinglyLinkedList(llist.head);
 
-        SinglyLinkedListNode llist_head = insertNodeAtPosition(llist.head, data, position);
-
-        printSinglyLinkedList(llist_head, " ", bufferedWriter);
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
 
         scanner.close();
     }
